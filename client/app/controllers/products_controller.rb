@@ -12,6 +12,11 @@ class ProductsController < ApplicationController
     @product = Product.new
   end
 
+  # create action: Product.create(attributes)
+  # or
+  # product = Product.new
+  # product.description = params[:product][:description]
+  # product.save
   def create
     @product = Product.create(params[:product])
 
@@ -26,6 +31,12 @@ class ProductsController < ApplicationController
     @product = Product.show(params[:id])
   end
 
+  # update action: Product.update(id, attributes)
+  # or Product.show(id).update(attributes)
+  # or
+  # product = Product.show(id)
+  # product.description = params[:product][:description]
+  # product.save
   def update
     @product = Product.update(params[:id], params[:product])
 
@@ -36,6 +47,8 @@ class ProductsController < ApplicationController
     end
   end
 
+  # destroy action: Product.destroy(id)
+  # or Product.show(id).destroy
   def destroy
     @product = Product.destroy(params[:id])
 
@@ -46,6 +59,8 @@ class ProductsController < ApplicationController
     end
   end
 
+  # publish action: Product.publish(id)
+  # or Product.show(id).publish
   def publish
     @product = Product.publish(params[:id])
 
