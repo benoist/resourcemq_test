@@ -1,7 +1,9 @@
 class ProductsController < ApplicationController
-
   def index
-    @products = Product.index(page: params[:page])
+    message   = Product.index(page: params[:page])
+    @page     = message.page
+    @total    = message.total
+    @products = message.items
   end
 
   def show
