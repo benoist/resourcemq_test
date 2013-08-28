@@ -1,22 +1,21 @@
 class ProductMessages
   include ResourceMQ::Messages
 
+  message :products do
+    attribute :page, Integer
+    attribute :total, Integer
+    attribute :items, Array[:product]
+  end
+
+  message :product do
+    id :id, Integer
+
+    attribute :name, String
+    attribute :description, String
+    attribute :price_in_cents, Integer
+  end
+
   service :products do
-    message :products do
-      has_many :products
-
-      attribute :page, Integer
-      attribute :total, Integer
-    end
-
-    message :product do
-      identifier :id, Integer
-
-      attribute :name, String
-      attribute :description, String
-      attribute :price_in_cents, Integer
-    end
-
     action :index, response: :products do
       attribute :page, Integer
     end
@@ -28,16 +27,16 @@ class ProductMessages
     end
 
     action :update, response: :product do
-      identifier :id, Integer
+      id :id, Integer
       extends :create, except: [:name]
     end
 
     action :show, response: :product do
-      identifier :id, Integer
+      id :id, Integer
     end
 
     action :destroy, response: :product do
-      identifier :id, Integer
+      id :id, Integer
     end
   end
 end

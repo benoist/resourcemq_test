@@ -1,38 +1,38 @@
 class ProductsService < ResourceMQ::Service::Base
   def index
-    @products = Product.all
+    @products = Product.paginate(message.page)
 
-    respond_with @products
+    respond_with page: message.page, total: Products.total, items: @products
   end
 
   def show
-    @product = Product.find(params[:id])
+    @product = Product.find(message.id)
 
     respond_with @product
   end
 
   def create
-    @product = Product.build(params)
+    @product = Product.build(message.attributes)
 
     if @product.save
       respond_with @product
     else
-      respond_with @product, status: :unprocessable_entity
+      respond_with errors: @product.errors, status: :unprocessable_entity
     end
   end
 
   def update
-    @product = Product.find(params[:id])
+    @product = Product.find(message.id)
 
-    if @product.update_attributes(params.except(:id))
+    if @product.update_attributes(message.attributes)
       respond_with @product
     else
-      respond_with @product, status: :unprocessable_entity
+      respond_with errors: @product.errors, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @product = Product.find(params[:id])
+    @product = Product.find(message.id)
 
     @product.destroy
 

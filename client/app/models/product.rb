@@ -1,39 +1,50 @@
 class Product
   include ResourceMQ::Resource
 
+  message :products do
+    attribute :page, Integer
+    attribute :total, Integer
+    attribute :items, Array[:product]
+  end
+
+  message :product do
+    id :id, Integer
+
+    attribute :name, String
+    attribute :description, String
+    attribute :price_in_cents, Integer
+  end
+
+  namespace :admin do
+    service :products do
+      message :publish do
+        identifier :id, Integer
+      end
+    end
+  end
+
   service :products do
-    message :products do
-      repeated :items, :product
-    end
-
-    message :product do
-      required :id, Integer
-      required :name, String
-      required :description, String
-      required :price_in_cents, Integer
-    end
-
     action :index, response: :products do
-      optional :page, Integer
+      attribute :page, Integer
     end
 
     action :create, response: :product do
-      required :name, String
-      required :description, String
-      required :price_in_cents, Integer
+      attribute :name, String
+      attribute :description, String
+      attribute :price_in_cents, Integer
     end
 
     action :update, response: :product do
+      id :id, Integer
       extends :create, except: [:name]
-      required :id, Integer
     end
 
     action :show, response: :product do
-      required :id, Integer
+      id :id, Integer
     end
 
     action :destroy, response: :product do
-      required :id, Integer
+      id :id, Integer
     end
   end
 end

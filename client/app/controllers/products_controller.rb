@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.show(id: params[:id])
+    @product = Product.show(params[:id])
   end
 
   def new
@@ -13,8 +13,7 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.new(params[:product])
-    @product.create
+    @product = Product.create(params[:product])
 
     if @product.created?
       redirect_to @product
@@ -24,12 +23,11 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    @product = Product.show(id: params[:id])
+    @product = Product.show(params[:id])
   end
 
   def update
-    @product = Product.show(id: params[:id])
-    @product.update(params[:product])
+    @product = Product.update(params[:id], params[:product])
 
     if @product.updated?
       redirect_to @product
@@ -39,7 +37,7 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @product = Product.destroy(id: params[:id])
+    @product = Product.destroy(params[:id])
 
     if @product.destroyed?
       redirect_to products_path
@@ -49,7 +47,7 @@ class ProductsController < ApplicationController
   end
 
   def publish
-    @product = Product.publish(id: params[:id])
+    @product = Product.publish(params[:id])
 
     if @product.saved?
       flash[:notice] = 'Product published'
