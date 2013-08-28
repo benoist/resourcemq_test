@@ -1,0 +1,152 @@
+{
+  "request": {
+    "service": "products",
+    "action": "index",
+    "message": {
+      "page": 1,
+      "order": "name_desc"
+    }
+  },
+  "response": {
+    "status": 200,
+    "message": [
+      {
+        "id": 1,
+        "name": "iMac",
+        "description": "A brand new iMac",
+        "price_in_cents": 179500
+      }
+    ],
+    "errors": {}
+  },
+
+  "request": {
+    "service": "products",
+    "action": "show",
+    "message": {
+      "id": 1
+    }
+  },
+  "response": {
+    "status": 200,
+    "message": {
+      "id": 1,
+      "name": "iMac",
+      "description": "A brand new iMac",
+      "price_in_cents": 179500
+    },
+    "errors": {}
+  },
+
+  "request": {
+    "service": "products",
+    "action": "create",
+    "message": {
+      "name": "iMac",
+      "description": "A brand new iMac",
+      "price_in_cents": 179500
+    }
+  },
+  "response": {
+    "status": 201,
+    "message": [
+      {
+        "id": 1,
+        "name": "iMac",
+        "description": "A brand new iMac",
+        "price_in_cents": 179500
+      }
+    ],
+    "errors": {}
+  },
+
+  "request": {
+    "service": "products",
+    "action": "create",
+    "message": {
+      "name": "iMac",
+      "description": "",
+      "price_in_cents": -100
+    }
+  },
+  "response": {
+    "status": 422,
+    "message": [
+      {
+        "id": 1,
+        "name": "iMac",
+        "description": "",
+        "price_in_cents": -100
+      }
+    ],
+    "errors": {
+      "description": ["blank"],
+      "price_in_cents": ["negative_amount"]
+    }
+  },
+
+  "request": {
+    "service": "products",
+    "action": "update",
+    "message": {
+      "id": 1,
+      "description": "OK maybe it's refurbished...",
+      "price_in_cents": 99900
+    }
+  },
+  "response": {
+    "status": 200,
+    "message": [
+      {
+        "id": 1,
+        "name": "iMac",
+        "description": "OK maybe it's refurbished...",
+        "price_in_cents": 99900
+      }
+    ],
+    "errors": { }
+  },
+
+  "request": {
+    "service": "products",
+    "action": "update",
+    "message": {
+      "id": 1,
+      "description": "",
+      "price_in_cents": -100
+    }
+  },
+  "response": {
+    "status": 422,
+    "message": [
+      {
+        "id": 1,
+        "name": "iMac",
+        "description": "",
+        "price_in_cents": -100
+      }
+    ],
+    "errors": {
+      "description": ["blank"],
+      "price_in_cents": ["negative_amount"]
+    }
+  },
+
+  "request": {
+    "service": "products",
+    "action": "destroy",
+    "message": {
+      "id": 1
+    }
+  },
+  "response": {
+    "status": 200,
+    "message": {
+      "id": 1,
+      "name": "iMac",
+      "description": "A brand new iMac",
+      "price_in_cents": 179500
+    },
+    "errors": {}
+  }
+}

@@ -3,37 +3,41 @@ class ProductMessages
 
   service :products do
     message :products do
-      repeated :items, :product
+      has_many :products
+
+      attribute :page, Integer
+      attribute :total, Integer
     end
 
     message :product do
-      required :id, Integer
-      required :name, String
-      required :description, String
-      required :price_in_cents, Integer
+      identifier :id, Integer
+
+      attribute :name, String
+      attribute :description, String
+      attribute :price_in_cents, Integer
     end
 
     action :index, response: :products do
-      optional :page, Integer
+      attribute :page, Integer
     end
 
     action :create, response: :product do
-      required :name, String
-      required :description, String
-      required :price_in_cents, Integer
+      attribute :name, String
+      attribute :description, String
+      attribute :price_in_cents, Integer
     end
 
     action :update, response: :product do
+      identifier :id, Integer
       extends :create, except: [:name]
-      required :id, Integer
     end
 
     action :show, response: :product do
-      required :id, Integer
+      identifier :id, Integer
     end
 
     action :destroy, response: :product do
-      required :id, Integer
+      identifier :id, Integer
     end
   end
 end
