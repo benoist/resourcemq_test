@@ -148,5 +148,39 @@
       "price_in_cents": 179500
     },
     "errors": {}
+  },
+
+  "request": {
+    "service": "profiles",
+    "action": "show",
+    "message": {
+      "id": 1
+    }
+  },
+  "response": {
+    "status": 200,
+    "message": {
+      "id": 1,
+      "name": "Pino",
+      "products": {
+        "id": 1,
+        "name": "iMac",
+        "purchased_at": 1377680287874067 //(time = Time.now).to_i * 1000000 + time.usec
+      }
+    },
+    "errors": {}
+  },
+
+  "request": {
+    "service": "admin/product",
+    "action": "publish",
+    "message": {
+      "id": 1
+    }
+  },
+  "response": {
+    "status": 200,
+    "message": { },
+    "errors": {}
   }
 }
