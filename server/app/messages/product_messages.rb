@@ -14,7 +14,7 @@ class Products
   attribute :page, Integer
   attribute :total, Integer
 
-  has_many :products, serializer: Product
+  has_many :products, Product
 end
 
 service :products, response: Products do
