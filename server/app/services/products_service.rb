@@ -2,7 +2,7 @@ class ProductsService < ResourceMQ::Service::Base
   def index
     @products = Product.paginate(message.page)
 
-    respond_with page: message.page, total: Products.total, items: @products
+    respond_with page: message.page, total: Product.total, items: @products
   end
 
   def show
@@ -37,5 +37,11 @@ class ProductsService < ResourceMQ::Service::Base
     @product.destroy
 
     respond_with @product
+  end
+
+  private
+
+  def respond_with(*args)
+
   end
 end

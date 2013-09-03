@@ -4,4 +4,8 @@ class Product
   # Loads the product messages class
   # The convention can be extracted messages "#{self.name}Messages".underscore, "#{self.name}".under_score
   messages :product_messages, default: :product
+
+  def published?
+    published_at <= Time.now
+  end
 end

@@ -1,42 +1,39 @@
-class ProductMessages
-  include ResourceMQ::Messages
+class Product
+  include ResourceMQ::Resource
 
-  message :products do
+  attribute :id, Integer
+  attribute :name, String
+  attribute :description, String
+  attribute :price_in_cents, Integer
+  attribute :published_at, Time
+end
+
+class Products
+  include ResourceMQ::Message
+
+  attribute :page, Integer
+  attribute :total, Integer
+
+  has_many :products, serializer: Product
+end
+
+service :products, response: Products do
+  collection :index do
     attribute :page, Integer
-    attribute :total, Integer
-    attribute :items, Array[:product]
   end
 
-  message :product do
-    id :id, Integer
-
-    attribute :name, String
-    attribute :description, String
-    attribute :price_in_cents, Integer
+  # Defaults to all attributes
+  collection :create, response: Product do
+    attributes_for Product
   end
 
-  service :products do
-    action :index, response: :products do
-      attribute :page, Integer
-    end
-
-    action :create, response: :product do
-      attribute :name, String
-      attribute :description, String
-      attribute :price_in_cents, Integer
-    end
-
-    action :update, response: :product do
-      id :id, Integer
-      extends :create, except: [:name]
-    end
-
-    action :show, response: :product do
-      id :id, Integer
-    end
-
-    action :destroy, response: :product do
-      id :id, Integer
-    end
+  # Defaults to all but can be overwritten
+  member :update, response: Product do
+    attributes_for Product, only: [:description, :price_in_cents]
+    #attributes_for Product, except: [:name]
   end
+
+  member :show, response: Product
+  member :destroy, response: Product
+  member :publish, response: Product
 end
