@@ -13,7 +13,7 @@ resource :product do
   # }
 
   collection_response :products do
-    collection_of :product
+    # collection_of :product # this is default :products.singularize
 
     attribute :page, Integer
     attribute :total, Integer
