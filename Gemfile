@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'beefcake'
-gem 'activerecord'
+gem 'virtus'
+gem 'activerecord', '~> 4.0'
+gem 'minitest'
+gem 'minitest-reporters'
