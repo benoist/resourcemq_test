@@ -12,11 +12,11 @@ resource :product do
   #   published_at: 12457
   # }
 
-  response :products do
+  collection_response :products do
+    collection_of :product
+
     attribute :page, Integer
     attribute :total, Integer
-
-    has_many :products, Product
   end
 
   # Products Message
