@@ -1,4 +1,4 @@
-resources :product do
+resource :product do
   attribute :name, String
   attribute :description, String
   attribute :price_in_cents, Integer
