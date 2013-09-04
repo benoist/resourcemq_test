@@ -12,7 +12,7 @@ resource :product do
   #   published_at: 12457
   # }
 
-  message :products do
+  response :products do
     attribute :page, Integer
     attribute :total, Integer
 
@@ -87,7 +87,7 @@ resource :product do
     # }
 
     action :publish, responds_with: :product
-    
+
     # Publish message
     # {
     #   id: 1
