@@ -3,8 +3,8 @@
     "service": "products",
     "action": "index",
     "header": {
-      "trace_id": 'asd123',
-      "authorization": 'Token 1234',
+      "trace_id": 'trace123',
+      "token": 'token123',
       "remote_ip": '127.0.0.1'
     },
     "message": {
@@ -28,6 +28,11 @@
   "request": {
     "service": "products",
     "action": "show",
+    "header": {
+      "trace_id": 'trace123',
+      "token": 'token123',
+      "remote_ip": '127.0.0.1'
+    },
     "message": {
       "id": 1
     }
@@ -46,6 +51,11 @@
   "request": {
     "service": "products",
     "action": "create",
+    "header": {
+      "trace_id": 'trace123',
+      "token": 'token123',
+      "remote_ip": '127.0.0.1'
+    },
     "message": {
       "name": "iMac",
       "description": "A brand new iMac",
@@ -68,6 +78,11 @@
   "request": {
     "service": "products",
     "action": "create",
+    "header": {
+      "trace_id": 'trace123',
+      "token": 'token123',
+      "remote_ip": '127.0.0.1'
+    },
     "message": {
       "name": "iMac",
       "description": "",
@@ -93,6 +108,11 @@
   "request": {
     "service": "products",
     "action": "update",
+    "header": {
+      "trace_id": 'trace123',
+      "token": 'token123',
+      "remote_ip": '127.0.0.1'
+    },
     "message": {
       "id": 1,
       "description": "OK maybe it's refurbished...",
@@ -115,6 +135,11 @@
   "request": {
     "service": "products",
     "action": "update",
+    "header": {
+      "trace_id": 'trace123',
+      "token": 'token123',
+      "remote_ip": '127.0.0.1'
+    },
     "message": {
       "id": 1,
       "description": "",
@@ -140,6 +165,11 @@
   "request": {
     "service": "products",
     "action": "destroy",
+    "header": {
+      "trace_id": 'trace123',
+      "token": 'token123',
+      "remote_ip": '127.0.0.1'
+    },
     "message": {
       "id": 1
     }
@@ -158,6 +188,11 @@
   "request": {
     "service": "profiles",
     "action": "show",
+    "header": {
+      "trace_id": 'trace123',
+      "token": 'token123',
+      "remote_ip": '127.0.0.1'
+    },
     "message": {
       "id": 1
     }
@@ -179,6 +214,11 @@
   "request": {
     "service": "admin/products",
     "action": "publish",
+    "header": {
+      "trace_id": 'trace123',
+      "token": 'token123',
+      "remote_ip": '127.0.0.1'
+    },
     "message": {
       "id": 1
     }
