@@ -7,15 +7,20 @@ end
 class ResourceDummy
   include ResourceMQ::Resource
 
-  attribute :name, String
-  attribute :description, String
-  attribute :price_in_cents, Integer
-  attribute :published_at, Time
+  resource :products do
+    attribute :name, String
+    attribute :description, String
+    attribute :price_in_cents, Integer
+    attribute :published_at, Time
+
+    collection do
+      action :index, responds_with: :products do
+        params :page, Integer
+      end
+    end
+  end
 
   class << self
-    def index(params = {})
-      service.request(:index, params).response(ResourcesDummy)
-    end
 
     def show(id)
       service.request(:show, id: id).response(ResourceDummy)
@@ -57,7 +62,7 @@ end
 
 class ResourceTest < MiniTest::Unit::TestCase
   def test_the_truth
-    assert true
+    assert ResourceDummy.respond_to?(:index)
   end
 end
 

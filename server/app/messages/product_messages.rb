@@ -12,6 +12,12 @@ resource :product do
   #   published_at: 12457
   # }
 
+  header do
+    param :trace_id, String
+    param :remote_ip, String
+    param :token, String
+  end
+
   collection_response :products do
     # collection_of :product # this is default :products.singularize
 
@@ -33,7 +39,7 @@ resource :product do
 
   collection do
     action :index, responds_with: :products do
-      params :page, Integer
+      param :page, Integer
     end
 
     # Index message

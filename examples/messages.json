@@ -2,6 +2,11 @@
   "request": {
     "service": "products",
     "action": "index",
+    "header": {
+      "trace_id": 'asd123',
+      "authorization": 'Token 1234',
+      "remote_ip": '127.0.0.1'
+    },
     "message": {
       "page": 1,
       "order": "name_desc"
